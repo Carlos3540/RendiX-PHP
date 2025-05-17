@@ -15,7 +15,7 @@
     <div class="login-container">
 
         <!-- Logo superior -->
-        <img src="IMAGENES/RendiX.png" alt="Logo RendiX" class="logo">
+        <img src="../IMAGENES/RendiX.png" alt="Logo RendiX" class="logo">
         <h2>Iniciar Sesión</h2>
         
         <!-- Formulario de inicio de sesión que envía los datos a controlador/inicio.php -->
