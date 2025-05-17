@@ -24,20 +24,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Validar que el correo no esté registrado
         $stmt = $db->prepare("SELECT id FROM usuarios WHERE correo = :correo");
-        $stmt->execute(['correo' => $correo]);
+        $stmt->execute([':correo' => $correo]);
         if ($stmt->fetch()) {
             echo "Este correo ya está registrado.";
             exit;
         }
 
         // Insertar nuevo usuario 
-        $stmt = $db->prepare("INSERT INTO usuarios (nombre, apellido, birth, correo, contraseña) VALUES (:nombre, :apellido, :birth, :correo, :contraseña)");
+        $stmt = $db->prepare("INSERT INTO usuarios (nombre, apellido, birth, correo, contraseña) 
+                              VALUES (:nombre, :apellido, :birth, :correo, :contraseña)");
         $stmt->execute([
-            'nombre'     => $nombre,
-            'apellido'   => $apellido,
-            'birth'      => $birth,
-            'correo'     => $correo,
-            'contraseña' => $contraseña
+            ':nombre'     => $nombre,
+            ':apellido'   => $apellido,
+            ':birth'      => $birth,
+            ':correo'     => $correo,
+            ':contraseña' => $contraseña
         ]);
 
         // Redirigir al index al finalizar

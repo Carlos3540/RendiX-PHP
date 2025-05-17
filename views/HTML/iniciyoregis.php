@@ -67,7 +67,7 @@
       
       // Si el inicio de sesión fue exitoso, redirige a otra página
       if (result.success) {
-        window.location.href = 'index.php'; // Cambiar URL si es necesario
+        window.location.href = '../index.php'; 
       }
     }, 3000);
   });
