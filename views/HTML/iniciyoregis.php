@@ -6,7 +6,7 @@
   <title>Inicio de Sesión</title>
 
   <!-- Enlace al archivo CSS que da estilo al formulario de inicio -->
-  <link rel="stylesheet" href="CSS/StyleInicio.css" />
+  <link rel="stylesheet" href="../CSS/StyleInicio.css">
 </head>
 <body>
 

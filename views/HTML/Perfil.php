@@ -9,7 +9,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil</title>
   <!-- Enlace al archivo CSS que da estilo a la página de perfil -->
-  <link rel="stylesheet" href="CSS/Style_perfil.css" />
+<link rel="stylesheet" href="../CSS/Style_perfil.css">
 </head>
 <body>
 
