@@ -1,0 +1,174 @@
+/* Reset y fuente base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+body {
+  background-color: #fefefe;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Encabezado estilo Rendix */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #ff6600;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  background-color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #ff6600;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #f4f4f4;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Tarjeta de perfil */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  background-color: #fff;
+  margin: 24px auto;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.profile-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.profile-email {
+  color: #777;
+  font-size: 1rem;
+  margin-top: 6px;
+}
+
+/* Secciones */
+.section-group {
+  width: 90%;
+  max-width: 700px;
+  margin: 16px auto;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ff6600;
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+/* Tarjetas de opciones */
+.option-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
+}
+
+.option-card:hover {
+  transform: translateY(-2px);
+}
+
+.option-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  color: #fff;
+}
+
+.icon-placeholder img {
+  width: 22px;
+  height: 22px;
+}
+
+/* Iconos con color estilo Rendix */
+.dollar-icon { background-color: #27ae60; }
+.notification-icon { background-color: #3498db; }
+.user-icon { background-color: #8e44ad; }
+.comment-icon { background-color: #f39c12; }
+.security-icon { background-color: #e67e22; }
+
+.option-text {
+  flex-grow: 1;
+  font-size: 1rem;
+  color: #333;
+}
+
+.option-arrow img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Botón cerrar sesión */
+#logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 12px;
+  transition: background-color 0.3s ease;
+}
+
+#logout-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .profile-card, .section-group {
+    width: 95%;
+  }
+
+  .profile-name {
+    font-size: 1.2rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  #logout-btn {
+    font-size: 14px;
+  }
+}
