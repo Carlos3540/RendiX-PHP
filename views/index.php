@@ -89,7 +89,7 @@ $productosDestacados[] = new Producto(
   <title>Rendix.COM</title>
   <link rel="stylesheet" href="CSS/Style.css">
   <script src="JS/Botones.js"> </script>
-   <script src="JS/iniciarsesion.js"> </script>
+  <script src="../JS/iniciarsesion.js"></script>
 </head>
 <body>
   <header>
