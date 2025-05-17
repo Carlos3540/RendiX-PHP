@@ -45,20 +45,20 @@
     </form>
 
     <!-- Enlace para usuarios que ya tienen cuenta -->
-    <p>¿Ya tienes una cuenta? <a href="iniciyoregis.php">Inicia sesión</a></p>
+    <p>¿Ya tienes una cuenta? <a href="InicioSesion.php">Inicia sesión</a></p>
 
     <!-- Imagen del logo de la página -->
-    <img src="imagenes/rendix logo.png" alt="rendix">
+    <img src="../IMAGENES/RendiX.png" alt="rendix">
 
     <!-- Pie de página con información de contacto y redes sociales -->
     <footer id="contacto">
         <p>Contacto: rendix@hotmail.com</p>
         <p>Redes sociales: 
             <a href="#" class="social-link">
-                <img src="imagenes/linkedin.png" alt="LinkedIn" class="social-icon"> 
+                <img src="../IMAGENES/linkedin.png" alt="LinkedIn" class="social-icon"> 
             </a>  
             <a href="#" class="social-link">
-                <img src="imagenes/github.png" alt="GitHub" class="social-icon">
+                <img src="../IMAGENES/github.png" alt="GitHub" class="social-icon">
             </a>  
         </p>
     </footer>
