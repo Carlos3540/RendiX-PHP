@@ -110,8 +110,8 @@ $productosDestacados[] = new Producto(
 </div>
 
         <ul id="menu">
-          <li><a href="Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
-          <li><a href="index.php">Productos destacados</a></li>
+        <li><a href="HTML/Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
+        <li><a href="index.php">Productos destacados</a></li>
           <li><a href="HTML/contactenos.php">Contáctenos</a></li>
           <li class="dropdown">
             <a href="#">Más opciones</a>
