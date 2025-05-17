@@ -43,7 +43,7 @@
     </form>
 
     <!-- Enlace para usuarios que ya tienen cuenta -->
-    <p>¿Ya tienes una cuenta? <a href="iniciyoregis.html">Inicia sesión</a></p>
+    <p>¿Ya tienes una cuenta? <a href="iniciyoregis.php">Inicia sesión</a></p>
 
     <!-- Imagen del logo de la página -->
     <img src="imagenes/rendix logo.png" alt="rendix">
