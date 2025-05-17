@@ -13,7 +13,8 @@
 <body>
 
     <!-- Formulario de registro que envía los datos a un script PHP (controlador/registro.php) -->
-    <form action="controlador/registro.php" method="POST">
+    <form action="../../controlador/registro.php" method="POST">
+
         
         <!-- Campo para el nombre -->
         <label for="nombre">Nombre:</label>
@@ -63,6 +64,6 @@
     </footer>
 
     <!-- Script adicional (si contiene funciones JS para validación o mejoras visuales) -->
-    <script src="JS/iniciarsesion.js"></script>
+    <script src="../JS/iniciarsesion.js"></script>
 </body>
 </html>

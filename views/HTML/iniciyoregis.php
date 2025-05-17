@@ -19,7 +19,7 @@
         <h2>Iniciar Sesión</h2>
         
         <!-- Formulario de inicio de sesión que envía los datos a controlador/inicio.php -->
-        <form action="controlador/inicio.php" method="POST" id="loginForm">
+        <form action="../../controlador/inicio.php" method="POST" id="loginForm">
             <label for="usuario">Nombre:</label>
             <input type="text" id="usuario" name="usuario" class="input-field" required>
 
@@ -47,9 +47,9 @@
     const formData = new FormData(this);
 
     // Envía los datos al archivo PHP usando fetch (petición POST)
-    const response = await fetch('controlador/inicio.php', {
-      method: 'POST',
-      body: formData
+  const response = await fetch('../../controlador/inicio.php', {
+    method: 'POST',
+    body: formData
     });
 
     // Espera la respuesta del servidor en formato JSON

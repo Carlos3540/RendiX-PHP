@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loginLink = document.getElementById('sesion-link'); // Usar id en vez de selector de href
 
-  fetch('modelo/user.php')
+  fetch('../../modelo/user.php')
     .then(res => res.json())
     .then(data => {
       if (data.loggedIn) {

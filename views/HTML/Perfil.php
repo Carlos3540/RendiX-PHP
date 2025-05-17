@@ -108,45 +108,45 @@ session_start();
   <!-- Script para verificar la sesión del usuario y gestionar el cierre de sesión -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Verifica si el usuario tiene sesión activa consultando el archivo PHP
-    fetch('modelo/user.php')
+  // Verifica si el usuario tiene sesión activa consultando el archivo PHP
+  fetch('../../modelo/user.php')
+    .then(res => res.json())
+    .then(user => {
+      if (!user.loggedIn) {
+        // Si no hay sesión, redirige al formulario de registro
+        window.location.href = 'Registro.php';
+      } else {
+        // Si hay sesión, muestra el nombre del usuario
+        document.querySelector('.profile-name').textContent = user.nombre;
+        document.querySelector('.profile-email').textContent = 'Usuario activo';
+      }
+    })
+    .catch(err => {
+      console.error('Error verificando sesión:', err);
+    });
+
+  // Lógica para cerrar sesión al hacer clic en el botón
+  const logoutBtn = document.getElementById('logout-btn');
+  if(logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      fetch('../../controlador/cierre.php', {
+        method: 'POST'
+      })
       .then(res => res.json())
-      .then(user => {
-        if (!user.loggedIn) {
-          // Si no hay sesión, redirige al formulario de registro
-          window.location.href = 'Registro.php';
+      .then(data => {
+        if (data.loggedOut) {
+          // Redirige al inicio después de cerrar sesión
+          window.location.href = 'index.php';
         } else {
-          // Si hay sesión, muestra el nombre del usuario
-          document.querySelector('.profile-name').textContent = user.nombre;
-          document.querySelector('.profile-email').textContent = 'Usuario activo';
+          alert('No se pudo cerrar sesión.');
         }
       })
       .catch(err => {
-        console.error('Error verificando sesión:', err);
+        console.error('Error al cerrar sesión:', err);
       });
-
-    // Lógica para cerrar sesión al hacer clic en el botón
-    const logoutBtn = document.getElementById('logout-btn');
-    if(logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        fetch('controlador/cierre.php', {
-          method: 'POST'
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.loggedOut) {
-            // Redirige al inicio después de cerrar sesión
-            window.location.href = 'index.php';
-          } else {
-            alert('No se pudo cerrar sesión.');
-          }
-        })
-        .catch(err => {
-          console.error('Error al cerrar sesión:', err);
-        });
-      });
-    }
-  });
-  </script>
+    });
+  }
+});
+ </script>
 </body>
 </html>
