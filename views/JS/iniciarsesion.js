@@ -1,8 +1,20 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const loginLink = document.getElementById('sesion-link'); // Usar id en vez de selector de href
 
-function Iniciar(event) {
-    window.location.href="../index.php"; //Link de la pagina principal
-}
-
-function Registrarse(event) {
-    window.location.href="registrarse.php"; //Link de la pagina principal
-}
+  fetch('modelo/user.php')
+    .then(res => res.json())
+    .then(data => {
+      if (data.loggedIn) {
+        if (loginLink) {
+          loginLink.textContent = `Hola, ${data.nombre}`;
+          loginLink.href = "perfil.php";
+        }
+      } else {
+        if (loginLink) {
+          loginLink.textContent = "Regístrate / Inicia Sesión";
+          loginLink.href = "Registro.php";
+        }
+      }
+    })
+    .catch(err => console.error("Error verificando sesión:", err));
+});

@@ -89,6 +89,7 @@ $productosDestacados[] = new Producto(
   <title>Rendix.COM</title>
   <link rel="stylesheet" href="CSS/Style.css">
   <script src="JS/Botones.js"> </script>
+   <script src="JS/iniciarsesion.js"> </script>
 </head>
 <body>
   <header>
@@ -109,7 +110,7 @@ $productosDestacados[] = new Producto(
 </div>
 
         <ul id="menu">
-          <li><a href="HTML/iniciyoregis.php">Regístrate / Inicia Sesión</a></li>
+          <li><a href="Registro.html" id="sesion-link">Regístrate/Inicia Sesión</a></li>
           <li><a href="index.php">Productos destacados</a></li>
           <li><a href="HTML/contactenos.php">Contáctenos</a></li>
           <li class="dropdown">
