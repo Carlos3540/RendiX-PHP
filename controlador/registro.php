@@ -1,42 +1,55 @@
 <?php
-include("conexion.php"); // Asegúrate de que este archivo cree correctamente $conn (MySQLi)
+// Registro.php - controlador
 
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$birth = $_POST['birth'];
-$correo = $_POST['correo'];
-$contraseña = $_POST['contraseña'];
-$confirmar = $_POST['confirmar'];
+require_once __DIR__ . '/../config/conexion.php';
 
-// Validación: contraseñas iguales
-if ($contraseña !== $confirmar) {
-    echo "Las contraseñas no coinciden.";
-    exit;
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener datos del formulario
+    $nombre     = $_POST['nombre'] ?? '';
+    $apellido   = $_POST['apellido'] ?? '';
+    $birth      = $_POST['birth'] ?? '';
+    $correo     = $_POST['correo'] ?? '';
+    $contraseña = $_POST['contraseña'] ?? '';
+    $confirmar  = $_POST['confirmar'] ?? '';
 
-// Validación: correo no repetido
-$check = $conn->prepare("SELECT id FROM usuarios WHERE correo = ?");
-$check->bind_param("s", $correo);
-$check->execute();
-$check->store_result();
-if ($check->num_rows > 0) {
-    echo "Este correo ya está registrado.";
-    exit;
-}
-$check->close();
+    // Validar que las contraseñas coincidan
+    if ($contraseña !== $confirmar) {
+        echo "Las contraseñas no coinciden.";
+        exit;
+    }
 
-// Insertar datos sin encriptar contraseña
-$stmt = $conn->prepare("INSERT INTO usuarios (nombre, apellido, birth, correo, contraseña) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $nombre, $apellido, $birth, $correo, $contraseña);
+    try {
+        // Conectar a la base de datos
+        $db = Conexion::conectar();
 
-if ($stmt->execute()) {
-    // Redirigir al index en caso de éxito
-    header("Location: ../index.php");
-    exit;
+        // Validar que el correo no esté registrado
+        $stmt = $db->prepare("SELECT id FROM usuarios WHERE correo = :correo");
+        $stmt->execute(['correo' => $correo]);
+        if ($stmt->fetch()) {
+            echo "Este correo ya está registrado.";
+            exit;
+        }
+
+        // Insertar nuevo usuario 
+        $stmt = $db->prepare("INSERT INTO usuarios (nombre, apellido, birth, correo, contraseña) VALUES (:nombre, :apellido, :birth, :correo, :contraseña)");
+        $stmt->execute([
+            'nombre'     => $nombre,
+            'apellido'   => $apellido,
+            'birth'      => $birth,
+            'correo'     => $correo,
+            'contraseña' => $contraseña
+        ]);
+
+        // Redirigir al index al finalizar
+        header("Location: ../index.php");
+        exit;
+
+    } catch (PDOException $e) {
+        echo "Error en la base de datos: " . $e->getMessage();
+        exit;
+    }
 } else {
-    echo "Error al registrar: " . $stmt->error;
+    echo "Acceso no válido.";
+    exit;
 }
-
-$stmt->close();
-$conn->close();
 ?>
