@@ -6,7 +6,8 @@
     <title>Registrarse</title> <!-- Título que aparece en la pestaña del navegador -->
     
     <!-- Enlace al archivo CSS que da estilo a la página de registro -->
-    <link rel="stylesheet" href="CSS/StyleRegistro.css">
+    <link rel="stylesheet" href="../CSS/StyleRegistro.css">
+
 </head>
 
 <body>
