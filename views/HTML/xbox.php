@@ -10,6 +10,7 @@
     <!-- Enlace al archivo de estilos CSS -->
     <link rel="stylesheet" href="../CSS/Style.css">
     <script src="../JS/Botones.js"></script>
+     <script src="../JS/VerificarSesion.js"></script>
 </head>
 <body>
     <!-- Inicio del encabezado de la página -->
@@ -23,7 +24,7 @@
           <!-- Barra de navegación -->
            <nav>
               <ul id="menu">
-                <li><a href="../iniciyoregis.php">Regístrate / Inicia Sesión</a></li>
+                 <li><a href="HTML/Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
                 <li><a href="../index.php">Productos destacados</a></li> 
                 <li><a href="../contactenos.php">Contáctenos</a></li>
                 <li class="dropdown">

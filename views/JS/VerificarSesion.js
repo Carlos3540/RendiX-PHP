@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch('../modelo/user.php', {
-    credentials: 'same-origin' // Asegura que se envíe la cookie de sesión
-  })
+  
+  fetch('/RendiX-PHP-1/modelo/user.php', {
+  credentials: 'same-origin'
+})
+
     .then(res => res.json())
     .then(data => {
       console.log("Resultado de sesión:", data); // Para depuración

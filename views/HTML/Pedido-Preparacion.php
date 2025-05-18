@@ -8,6 +8,7 @@
     <title>Pedido en Preparación</title>
     <link rel="stylesheet" href="../CSS/Style.css">
     <script src="../JS/Botones.js"></script>
+     <script src="../JS/VerificarSesion.js"></script>
 </head>
 <body>
     <body id="contactar">

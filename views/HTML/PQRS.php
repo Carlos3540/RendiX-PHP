@@ -31,7 +31,7 @@
     </div>
 
     <ul class="rendix-menu">
-      <li><a href="iniciyoregis.php">Regístrate / Inicia Sesión</a></li>
+                <li><a href="HTML/Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
                 <li><a href="../index.php">Productos destacados</a></li>
                 <li><a href="contactenos.php">Contáctenos</a></li>
                 <li class="dropdown">
@@ -125,6 +125,8 @@ document.getElementById('quejaForm').addEventListener('submit', function(e) {
 
   </div></CENTER>
 <pre id="result"></pre>
+
+ <script src="../JS/VerificarSesion.js"></script>
 
     
 </body>

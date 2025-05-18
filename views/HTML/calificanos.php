@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calificanos | RendiX</title>
    <link rel="stylesheet" href="../CSS/StyleCalifica.css">
+    <script src="../JS/VerificarSesion.js"></script>
 </head>
 <body>
     <header>
@@ -33,7 +34,7 @@
                 </div>
                 
                 <ul id="menu">
-            <li><a href="iniciyoregis.php">Regístrate / Inicia Sesión</a></li>
+                <li><a href="HTML/Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
                 <li><a href="../index.php">Productos destacados</a></li>
                 <li><a href="contactenos.php">Contáctenos</a></li>
                 <li class="dropdown">

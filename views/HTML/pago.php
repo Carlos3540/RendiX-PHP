@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../CSS/StyleCalifica.css">
 
   <script src="../JS/Botones.js"></script>
+   <script src="../JS/VerificarSesion.js"></script>
   <title>Pago</title>
   <style>
         /* Estilos para el header con tema naranja */

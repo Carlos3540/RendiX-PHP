@@ -26,7 +26,7 @@
                     <input type="text" name="text" class="input__search" placeholder="Buscar Productos, Marcas o Servicios">
                 </div>
                 <ul id="menu">
-                    <li><a href="iniciyoregis.php">Regístrate / Inicia Sesión</a></li>
+                    <li><a href="HTML/Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
                     <li><a href="../index.php">Productos destacados</a></li>
                     <li><a href="contactenos.php">Contáctenos</a></li>
                     <li class="dropdown">
@@ -159,6 +159,7 @@ document.getElementById('helpForm').addEventListener('submit', function(e) {
             
           
           <pre id="result"></pre>
+           <script src="../JS/VerificarSesion.js"></script>
               
           </body>
           </html>
