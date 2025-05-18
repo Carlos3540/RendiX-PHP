@@ -39,38 +39,42 @@
 
   <!-- Script para manejar el envío del formulario de forma asíncrona -->
   <script>
-  // Espera a que se envíe el formulario con id 'loginForm'
   document.getElementById('loginForm').addEventListener('submit', async function(e) {
-    e.preventDefault(); // Previene el envío tradicional del formulario
+  e.preventDefault();
 
-    // Captura los datos del formulario
-    const formData = new FormData(this);
+  const formData = new FormData(this);
 
-    // Envía los datos al archivo PHP usando fetch (petición POST)
-  const response = await fetch('../../controlador/inicio.php', {
-    method: 'POST',
-    body: formData
+  try {
+    const response = await fetch('../../controlador/inicio.php', {
+      method: 'POST',
+      body: formData,
+      credentials: 'same-origin'  // clave para sesión
     });
 
-    // Espera la respuesta del servidor en formato JSON
     const result = await response.json();
 
-    // Muestra un mensaje tipo toast en pantalla con el resultado
     const toast = document.getElementById('toast');
     toast.textContent = result.message;
     toast.style.display = 'block';
-    toast.style.backgroundColor = result.success ? 'green' : 'red'; // Verde si fue exitoso, rojo si no
+    toast.style.backgroundColor = result.success ? 'green' : 'red';
 
-    // Oculta el toast después de 3 segundos
     setTimeout(() => {
       toast.style.display = 'none';
-      
-      // Si el inicio de sesión fue exitoso, redirige a otra página
       if (result.success) {
         window.location.href = '../index.php'; 
       }
     }, 3000);
-  });
+
+  } catch(err) {
+    console.error('Error en fetch:', err);
+    const toast = document.getElementById('toast');
+    toast.textContent = 'Error de conexión.';
+    toast.style.display = 'block';
+    toast.style.backgroundColor = 'red';
+    setTimeout(() => toast.style.display = 'none', 3000);
+  }
+});
+
   </script>
 
 </body>
