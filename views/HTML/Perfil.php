@@ -31,74 +31,97 @@ session_start();
       <h3 class="section-title">Cuenta</h3>
 
       <!-- Opción: Pago -->
-      <div class="option-card">
-        <div class="option-icon dollar-icon">
-          <span class="icon-placeholder">
-            <img src="IMAGENES/dollar-icon.svg" alt="dollar-icon" />
-          </span>
-        </div>
-        <div class="option-text">Opciones de Pago</div>
-        <div class="option-arrow">
-          <img src="IMAGENES/more-arrow-button.svg" alt="arrow" />
-        </div>
-      </div>
+<div class="option-card">
+  <div class="option-icon dollar-icon">
+    <span class="icon-placeholder">
+      <img src="../IMAGENES/dollar-icon.svg" alt="dollar-icon" />
+    </span>
+  </div>
+  <div class="option-text">Opciones de Pago</div>
+  <div class="option-arrow">
+    <img src="../IMAGENES/more-arrow-button.svg" alt="arrow" />
+  </div>
+</div>
 
-      <!-- Opción: Notificaciones -->
-      <div class="option-card">
-        <div class="option-icon notification-icon">
-          <span class="icon-placeholder">
-            <img src="IMAGENES/notification-icon.svg" alt="notification-icon" />
-          </span>
-        </div>
-        <div class="option-text">Notificaciones</div>
-        <div class="option-arrow">
-          <img src="IMAGENES/more-arrow-button.svg" alt="arrow" />
-        </div>
-      </div>
+<!-- Opción: Carrito -->
+<a href="carrito.php" style="text-decoration: none;">
+  <div class="option-card">
+    <div class="option-icon cart-icon">
+      <span class="icon-placeholder">
+        <img src="../../views/IMAGENES/shopping-cart.svg" alt="carrito" />
+      </span>
+    </div>
+    <div class="option-text">Carrito</div>
+    <div class="option-arrow">
+      <img src="../../views/IMAGENES/more-arrow-button.svg" alt="arrow" />
+    </div>
+  </div>
+</a>
 
-      <!-- Opción: Perfil -->
-      <div class="option-card">
-        <div class="option-icon user-icon">
-          <span class="icon-placeholder">
-            <img src="IMAGENES/user-icon.svg" alt="user-icon" />
-          </span>
-        </div>
-        <div class="option-text">Perfil</div>
-        <div class="option-arrow">
-          <img src="IMAGENES/more-arrow-button.svg" alt="arrow" />
-        </div>
-      </div>
-    </section>
 
-    <!-- Sección de opciones generales -->
-    <section class="section-group">
-      <h3 class="section-title">General</h3>
 
-      <!-- Opción: Soporte -->
-      <div class="option-card">
-        <div class="option-icon comment-icon">
-          <span class="icon-placeholder">
-            <img src="IMAGENES/supoport-icon.svg" alt="soporte" />
-          </span>
-        </div>
-        <div class="option-text">Soporte</div>
-        <div class="option-arrow">
-          <img src="IMAGENES/more-arrow-button.svg" alt="arrow" />
-        </div>
-      </div>
+<!-- Opción: Notificaciones -->
+<div class="option-card">
+  <div class="option-icon notification-icon">
+    <span class="icon-placeholder">
+      <img src="../IMAGENES/notification-icon.svg" alt="notification-icon" />
+    </span>
+  </div>
+  <div class="option-text">Notificaciones</div>
+  <div class="option-arrow">
+    <img src="../IMAGENES/more-arrow-button.svg" alt="arrow" />
+  </div>
+</div>
 
-      <!-- Opción: Términos de servicio -->
-      <div class="option-card">
-        <div class="option-icon security-icon">
-          <span class="icon-placeholder">
-            <img src="IMAGENES/ToS-icon.svg" alt="ToS-icon" />
-          </span>
-        </div>
-        <div class="option-text">Términos de Servicio</div>
-        <div class="option-arrow">
-          <img src="IMAGENES/more-arrow-button.svg" alt="arrow" />
-        </div>
-      </div>
+<!-- Opción: Perfil -->
+<div class="option-card">
+  <div class="option-icon user-icon">
+    <span class="icon-placeholder">
+      <img src="../IMAGENES/user-icon.svg" alt="user-icon" />
+    </span>
+  </div>
+  <div class="option-text">Perfil</div>
+  <div class="option-arrow">
+    <img src="../IMAGENES/more-arrow-button.svg" alt="arrow" />
+  </div>
+</div>
+</section>
+
+<!-- Sección de opciones generales -->
+<section class="section-group">
+  <h3 class="section-title">General</h3>
+
+  <!-- Opción: Soporte -->
+  <div class="option-card">
+    <div class="option-icon comment-icon">
+      <span class="icon-placeholder">
+        <img src="../IMAGENES/supoport-icon.svg" alt="soporte" />
+      </span>
+    </div>
+    <div class="option-text">Soporte</div>
+    <div class="option-arrow">
+      <img src="../IMAGENES/more-arrow-button.svg" alt="arrow" />
+    </div>
+  </div>
+
+  <!-- Opción: Términos de servicio -->
+  <div class="option-card">
+    <div class="option-icon security-icon">
+      <span class="icon-placeholder">
+        <img src="../IMAGENES/ToS-icon.svg" alt="ToS-icon" />
+      </span>
+    </div>
+    <div class="option-text">Términos de Servicio</div>
+    <div class="option-arrow">
+      <img src="../IMAGENES/more-arrow-button.svg" alt="arrow" />
+    </div>
+  </div>
+
+  
+</section>
+
+
+
 
       <!-- Botón para cerrar sesión -->
       <button id="logout-btn">Cerrar Sesión</button>
@@ -136,7 +159,7 @@ session_start();
       .then(data => {
         if (data.loggedOut) {
           // Redirige al inicio después de cerrar sesión
-          window.location.href = 'index.php';
+          window.location.href = '/RendiX-PHP-1/views/index.php';
         } else {
           alert('No se pudo cerrar sesión.');
         }

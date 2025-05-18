@@ -141,14 +141,18 @@ h1 {
   background-color: #e74c3c;
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 12px 0;
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
-  width: 100%;
-  margin-top: 12px;
+  width: 90%;
+  max-width: 700px;
+  display: block;
+  margin: 24px auto;
   transition: background-color 0.3s ease;
+  text-align: center;
 }
+
 
 #logout-btn:hover {
   background-color: #c0392b;
@@ -171,4 +175,8 @@ h1 {
   #logout-btn {
     font-size: 14px;
   }
+}
+
+.cart-icon {
+  background-color: #e91e63; /* color fucsia vibrante */
 }
