@@ -1,56 +1,40 @@
 <?php
-// Registro.php - controlador
+session_start(); // Inicia la sesión
 
-require_once __DIR__ . '/../config/conexion.php';
+require_once("../config/conexion.php"); // Ajusta la ruta si es necesario
+$db = Conexion::conectar(); // Obtiene la conexión PDO
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener datos del formulario
-    $nombre     = $_POST['nombre'] ?? '';
-    $apellido   = $_POST['apellido'] ?? '';
-    $birth      = $_POST['birth'] ?? '';
-    $correo     = $_POST['correo'] ?? '';
-    $contraseña = $_POST['contraseña'] ?? '';
-    $confirmar  = $_POST['confirmar'] ?? '';
+// Recoge los datos del formulario
+$nombre     = $_POST['nombre'];
+$apellido   = $_POST['apellido'];
+$birth      = $_POST['birth'];
+$correo     = $_POST['correo'];
+$contraseña = $_POST['contraseña'];
+$confirmar  = $_POST['confirmar'];
 
-    // Validar que las contraseñas coincidan
-    if ($contraseña !== $confirmar) {
-        echo "Las contraseñas no coinciden.";
-        exit;
-    }
-
-    try {
-        // Conectar a la base de datos
-        $db = Conexion::conectar();
-
-        // Validar que el correo no esté registrado
-        $stmt = $db->prepare("SELECT id FROM usuarios WHERE correo = :correo");
-        $stmt->execute([':correo' => $correo]);
-        if ($stmt->fetch()) {
-            echo "Este correo ya está registrado.";
-            exit;
-        }
-
-        // Insertar nuevo usuario 
-        $stmt = $db->prepare("INSERT INTO usuarios (nombre, apellido, birth, correo, contraseña) 
-                              VALUES (:nombre, :apellido, :birth, :correo, :contraseña)");
-        $stmt->execute([
-            ':nombre'     => $nombre,
-            ':apellido'   => $apellido,
-            ':birth'      => $birth,
-            ':correo'     => $correo,
-            ':contraseña' => $contraseña
-        ]);
-
-        // Redirigir al index al finalizar
-        header("Location: ../index.php");
-        exit;
-
-    } catch (PDOException $e) {
-        echo "Error en la base de datos: " . $e->getMessage();
-        exit;
-    }
-} else {
-    echo "Acceso no válido.";
+// Validación: contraseñas iguales
+if ($contraseña !== $confirmar) {
+    echo "Las contraseñas no coinciden.";
     exit;
+}
+
+// Validación: correo no repetido
+$check = $db->prepare("SELECT id FROM usuarios WHERE correo = ?");
+$check->execute([$correo]);
+if ($check->rowCount() > 0) {
+    echo "Este correo ya está registrado.";
+    exit;
+}
+
+// Insertar datos (sin encriptar la contraseña)
+$stmt = $db->prepare("INSERT INTO usuarios (nombre, apellido, birth, correo, contraseña) VALUES (?, ?, ?, ?, ?)");
+$success = $stmt->execute([$nombre, $apellido, $birth, $correo, $contraseña]);
+
+if ($success) {
+    $_SESSION['usuario'] = $nombre;
+    header("Location: ../views/index.php"); // Redirige a la página principal
+    exit;
+} else {
+    echo "Error al registrar: " . implode(" | ", $stmt->errorInfo());
 }
 ?>
