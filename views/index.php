@@ -1,21 +1,24 @@
 <?php
 session_start();
 
+// Verifica si en la URL existe el parámetro 'vaciar' y si su valor es 1
 if (isset($_GET['vaciar']) && $_GET['vaciar'] == 1) {
-    // Vaciar carrito
+   // Si existe una sesión llamada 'carrito', la vacía (reinicia como un arreglo vacío)
     if (isset($_SESSION['carrito'])) {
         $_SESSION['carrito'] = [];
     }
-    // Redirigir para limpiar la URL
+   // Redirige al usuario a 'index.php' para evitar que la URL siga mostrando '?vaciar=1'
     header("Location:index.php");
     exit();
 }
-// vista/index.php
 
+// Carga el archivo donde se encuentra la clase 'Producto'
+// Este archivo debe contener la definición de la clase usada más adelante
 require_once __DIR__ . '/../modelo/Productos.php';
-
+// Crea un arreglo para almacenar los productos que se van a mostrar en la vista principal
 $productosDestacados = [];
-
+// Agrega productos destacados al arreglo utilizando objetos de la clase 'Producto'
+// Cada producto contiene: id, nombre, imagen, precio, duración del alquiler, descripción, y enlace a más información
 $productosDestacados[] = new Producto(
     1, // ID del producto
     "Lavadora 11 Kilogramos Haceb Panel Frontal Digital Gris",
@@ -66,8 +69,8 @@ $productosDestacados[] = new Producto(
     "HTML/carro.php"
 );
 
-// Verificar si la vista existe antes de asignar la URL
-$pcDetalle = file_exists(__DIR__ . '/HTML/pcgamer.php') ? "HTML/pcgamer.php" : "#";
+// Antes de agregar el producto PC Gamer, se verifica que el archivo de detalle exista
+$pcDetalle = file_exists(__DIR__ . '/HTML/pcgamer.php') ? "HTML/pcgamer.php" : "#";// Si no existe, se pone '#' como enlace de placeholder
 
 $productosDestacados[] = new Producto(
     6,
@@ -189,53 +192,69 @@ $productosDestacados[] = new Producto(
   
    <!-- Contenedor principal de productos organizados en filas -->
    <div class="flex-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
-
+<!-- Bucle para mostrar cada producto destacado -->
 <?php foreach ($productosDestacados as $index => $producto): ?>
     <div class="BloqueProducto">
         <div class="card">
             <div class="content">
+               <!-- Nombre del producto centrado y en negrita -->
                 <p style="text-align: center; font-weight: bold; min-height: 40px;">
                     <?php echo htmlspecialchars($producto->getNombre()); ?>
                 </p>
+                 <!-- Imagen del producto con ancho de 200px y texto alternativo -->
                 <img src="<?php echo htmlspecialchars($producto->getImagenUrl()); ?>" alt="<?php echo htmlspecialchars($producto->getNombre()); ?>" width="200">
                 <br><br>
+                   <!-- Mostrar precio formateado -->
                 <div class="price1"><?php echo htmlspecialchars($producto->getPrecioFormateado()); ?></div>
+                <!-- Mostrar unidad de tiempo para el precio, por ejemplo "Por 1 día" -->
                 <div class="price1"><?php echo htmlspecialchars($producto->getUnidadTiempoPrecio()); ?></div>
+                <!-- Mostrar descripción breve del producto -->
                 <div class="description" style="min-height: 60px;"><?php echo htmlspecialchars($producto->getDescripcionGeneral()); ?></div>
             </div>
-
+                <!-- Botón que redirige a la página de detalle para alquilar el producto -->
             <button onclick="window.location.href='<?php echo htmlspecialchars($producto->getUrlDetalle()); ?>'">Alquilar</button>
-
+                 <!-- Botón que llama a la función JS agregarAlCarrito enviando el ID del producto y cantidad 1 -->
             <div class="agregar-carrito-container">
-                <button onclick="agregarAlCarrito(<?php echo $index; ?>, 1)">Agregar al carrito</button>
+               <button onclick="console.log('Producto ID:', <?php echo htmlspecialchars($producto->getId()); ?>); agregarAlCarrito(<?php echo htmlspecialchars($producto->getId()); ?>, 1)">Agregar al carrito</button>
+
             </div>
         </div>
     </div>
 <?php endforeach; ?>
 
 <script>
+// Función que envía la solicitud para agregar un producto al carrito sin detener la página, 
+// espera la respuesta del servidor en segundo plano y luego muestra un mensaje según el resultado.
 function agregarAlCarrito(productoId, cantidad) {
+    console.log("Enviando al backend:", productoId, cantidad); 
+    // Petición POST con fetch para enviar datos JSON al controlador PHP
     fetch('../controlador/CarritoControlador.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             producto_id: productoId,
-            cantidad: cantidad
+            cantidad: cantidad,
+            alquilar: true
         })
     })
+    // Convertir la respuesta JSON a objeto JS
     .then(response => response.json())
     .then(data => {
-        if (data.mensaje === 'Producto agregado al carrito') {
-            alert('Producto agregado al carrito');
+        console.log("Respuesta del backend:", data); 
+        // Mostrar alerta con mensaje según éxito o error
+        if (data.success) {
+            alert(data.mensaje);
         } else {
-            alert('Error al agregar al carrito: ' + data.mensaje);
+            alert('Error: ' + data.mensaje);
         }
     })
     .catch(error => {
+    // Capturar y mostrar cualquier error de red o procesamiento
         console.error('Error:', error);
-        alert('Error al agregar al carrito');
+        alert('Error al procesar la solicitud');
     });
 }
+
 </script>
 
 
@@ -360,7 +379,7 @@ function agregarAlCarrito(productoId, cantidad) {
               </div>
           </div>
       </div>
-      
+</div>
       <div class="copyright">
           &copy; 2025 RendiX. Todos los derechos reservados.
       </div>
