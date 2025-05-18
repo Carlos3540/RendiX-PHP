@@ -390,24 +390,6 @@ function agregarAlCarrito(productoId, cantidad) {
 
 
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('../modelo/user.php')  // <-- Ruta correcta desde views/
-    .then(res => res.json())
-    .then(data => {
-      console.log(data); // <- ¿muestra { loggedIn: true, nombre: "tuUsuario" }?
-      if (data.loggedIn) {
-        const boton = document.getElementById('login-btn');
-        if (boton) {
-          boton.textContent = data.nombre;
-          boton.onclick = () => window.location.href = 'HTML/Perfil.php';
-        }
-      }
-    })
-    .catch(error => console.error('Error al verificar sesión:', error));
-});
-
-</script>
 
 </body>
 </html>
