@@ -1,13 +1,28 @@
 <?php
 session_start();
+// Incluir la clase que maneja el carrito de compras
 require_once '../../modelo/CarritoCompra.php';
-
+// Incluir el archivo de configuración y conexión a la base de datos
+require_once(__DIR__ . '/../../config/Conexion.php');
+// Crear conexión a la base de datos
+$conn = Conexion::conectar();
+// Preparar consulta SQL para obtener productos en el carrito junto con sus datos desde la tabla productos
+$query = $conn->prepare("
+    SELECT c.id, p.nombre, p.precio_arriendo AS precio, c.cantidad, p.imagen 
+    FROM carrito c 
+    JOIN productos p ON c.producto_id = p.id
+");
+// Ejecutar la consulta
+$query->execute();
+// Obtener todos los productos del carrito como un arreglo asociativo
+$productosEnCarrito = $query->fetchAll(PDO::FETCH_ASSOC);
+// Crear una instancia de la clase CarritoCompra para manipular el carrito
 $carrito = new CarritoCompra();
 
-// Manejar vaciar carrito (botón que viene en tu HTML)
+// Verificar si se envió el formulario para vaciar el carrito
 if (isset($_POST['vaciar'])) {
-    $carrito->vaciarCarrito();
-    header("Location:carrito.php"); // recarga la página para refrescar el carrito
+    $carrito->vaciarCarrito();// Vaciar el carrito
+    header("Location:carrito.php");  // Redirigir a la página del carrito para actualizar la vista
     exit;
 }
 ?>
@@ -229,24 +244,28 @@ if (isset($_POST['vaciar'])) {
   <main>
     <div id="productos-carrito">
 <?php
-if ($carrito->estaVacio()) {
+// Si no hay productos en el carrito, mostrar mensaje
+if (empty($productosEnCarrito)) {
     echo "<p>No hay productos en tu carrito aún.</p>";
 } else {
-    foreach ($carrito->obtenerProductos() as $producto) {
-        $imagenPath = $producto['imagen'];
-        if (!str_starts_with($imagenPath, "../") && !str_starts_with($imagenPath, "/")) {
-            $imagenPath = "../" . $imagenPath;
-        }
-        echo "<div class='producto-en-carrito'>";
-        echo "<img src='$imagenPath' alt='{$producto['nombre']}' width='100'>";
-        echo "<h3>{$producto['nombre']}</h3>";
-        echo "<p>Tipo de entrega: " . ($producto['tipoEntrega'] ?? 'No especificado') . "</p>";
-        echo "<p>Precio: $" . number_format($producto['precio'], 0, ',', '.') . "</p>";
-        echo "</div>";
-    }
-    echo "<h2>Total a pagar: $" . number_format($carrito->obtenerTotal(), 0, ',', '.') . "</h2>";
+  // Recorrer cada producto y mostrar su información
+    foreach ($productosEnCarrito as $producto) {
+      // Construir la ruta de la imagen asegurando que no agregue rutas innecesarias
+    $imagenPath = "../IMAGENES/" . basename($producto['imagen']); // Asegura que no agregue "/views/"
+    echo "<div class='producto-en-carrito'>";
+    echo "<img src='" . htmlspecialchars($imagenPath) . "' alt='{$producto['nombre']}' width='100'>";
+    echo "<h3>{$producto['nombre']}</h3>";
+    // Mostrar el precio con formato de moneda
+    echo "<p>Precio: $" . number_format($producto['precio'], 0, ',', '.') . "</p>";
+    echo "<p>Cantidad: " . htmlspecialchars($producto['cantidad']) . "</p>";
+    echo "</div>";
+}
+// Calcular y mostrar el total sumando los precios de todos los productos en el carrito
+    echo "<h2>Total a pagar: $" . number_format(array_sum(array_column($productosEnCarrito, 'precio')), 0, ',', '.') . "</h2>";
+      // Botón para proceder al pago, redirige a la página de pago
     echo '<button onclick="window.location.href=\'pago.php\'">Pagar</button>';
 }
+
 ?>
 </div>
 

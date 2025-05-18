@@ -3,7 +3,7 @@
 
 class Conexion {
     private static $host = "localhost";
-    private static $db_name = "rendix_system";  //¡MUY IMPORTANTE TEAM poner el nombre aqui de la DB que tiene el PHP admin!    
+    private static $db_name = "rendix";  //¡MUY IMPORTANTE TEAM poner el nombre aqui de la DB que tiene el PHP admin!    
     private static $username = "root";         
     private static $password = "";           
     private static $conn = null;
