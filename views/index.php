@@ -92,7 +92,9 @@ $productosDestacados[] = new Producto(
   <title>Rendix.COM</title>
   <link rel="stylesheet" href="CSS/Style.css">
   <script src="JS/Botones.js"> </script>
-  <script src="../JS/iniciarsesion.js"></script>
+  <script src="JS/VerificarSesion.js"></script>
+
+
 </head>
 <body>
   <header>
@@ -383,6 +385,29 @@ function agregarAlCarrito(productoId, cantidad) {
       <div class="copyright">
           &copy; 2025 RendiX. Todos los derechos reservados.
       </div>
-</body>
 
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('../modelo/user.php')  // <-- Ruta correcta desde views/
+    .then(res => res.json())
+    .then(data => {
+      console.log(data); // <- ¿muestra { loggedIn: true, nombre: "tuUsuario" }?
+      if (data.loggedIn) {
+        const boton = document.getElementById('login-btn');
+        if (boton) {
+          boton.textContent = data.nombre;
+          boton.onclick = () => window.location.href = 'HTML/Perfil.php';
+        }
+      }
+    })
+    .catch(error => console.error('Error al verificar sesión:', error));
+});
+
+</script>
+
+</body>
 </html>

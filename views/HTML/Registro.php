@@ -64,6 +64,6 @@
     </footer>
 
     <!-- Script adicional (si contiene funciones JS para validación o mejoras visuales) -->
-    <script src="../JS/iniciarsesion.js"></script>
+    <script src="../JS/VerificarSesion.js"></script>
 </body>
 </html>
