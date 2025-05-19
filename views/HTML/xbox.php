@@ -13,8 +13,10 @@
      <script src="../JS/VerificarSesion.js"></script>
 </head>
 <body>
-    <!-- Inicio del encabezado de la página -->
-    <header>
+       
+
+<!-- Inicio del encabezado de la página -->
+ <header>
         <div class="container">
           <div class="logo">
             <!-- Imagen del logo de RendiX -->
@@ -24,21 +26,22 @@
           <!-- Barra de navegación -->
            <nav>
               <ul id="menu">
-                 <li><a href="HTML/Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
+               <li><a href="Registro.php" id="sesion-link">Regístrate/Inicia Sesión</a></li>
                 <li><a href="../index.php">Productos destacados</a></li> 
-                <li><a href="../contactenos.php">Contáctenos</a></li>
+                <li><a href="contactenos.php">Contáctenos</a></li>
                 <li class="dropdown">
                   <a href="#">Más opciones</a>
                   <ul class="dropdown-content">
-                    <li><a href="../Calificanos.php">Califícanos</a></li>
-                    <li><a href="../Pagina de ayuda.php">Ayuda</a></li>
-                    <li><a href="../PQRS.php">PQRS</a></li>
+                    <li><a href="Calificanos.php">Califícanos</a></li>
+                    <li><a href="Pagina de ayuda.php">Ayuda</a></li>
+                    <li><a href="PQRS.php">PQRS</a></li>
                   </ul>
                 </li>
               </ul>
           </nav>
         </div>
     </header>
+    
     
     <!-- Título y descripción de la página -->
     <h3 id="l1">¿Estás interesado en alquilar este producto?</h3>
