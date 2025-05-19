@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   
-  fetch('/RendiX-PHP-1/modelo/user.php', {
+  fetch('/RendiX-PHP/modelo/user.php', {
   credentials: 'same-origin'
 })
 
@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const loginBtn = document.getElementById('login-btn');
         if (loginBtn) {
           loginBtn.textContent = data.nombre;
-          loginBtn.onclick = () => window.location.href = '/RendiX-PHP-1/views/HTML/Perfil.php';
+          loginBtn.onclick = () => window.location.href = '/RendiX-PHP/views/HTML/Perfil.php';
         }
 
         // Enlace de sesión
         const sesionLink = document.getElementById('sesion-link');
         if (sesionLink) {
           sesionLink.textContent = `Hola, ${data.nombre}`;
-          sesionLink.href = '/RendiX-PHP-1/views/HTML/Perfil.php';
+          sesionLink.href = '/RendiX-PHP/views/HTML/Perfil.php';
         }
 
       } else {

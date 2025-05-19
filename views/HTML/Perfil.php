@@ -159,7 +159,7 @@ session_start();
       .then(data => {
         if (data.loggedOut) {
           // Redirige al inicio después de cerrar sesión
-          window.location.href = '/RendiX-PHP-1/views/index.php';
+          window.location.href = '/RendiX-PHP/views/index.php';
         } else {
           alert('No se pudo cerrar sesión.');
         }
